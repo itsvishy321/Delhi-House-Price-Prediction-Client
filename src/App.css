@@ -1,0 +1,75 @@
+.bg-img{
+    background-image: linear-gradient(to right, rgb(35, 37, 38 , 0.9), rgb(65, 67, 69 , 0.9)),url('./assets/img/house-bg1.jpg');
+}
+
+.form-inputs {
+    --bg-light: #efefef;
+    --bg-dark: #707070;
+    --clr: #58bc82;
+    --clr-alpha: #9c9c9c60;
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    
+    gap: 3rem;
+    width: 100%;
+    min-width: 500px;
+    font-family: "Nunito Sans";
+  }
+
+
+  .form-inputs .input-field {
+    max-width: 20rem;
+    min-width: 20rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-inputs input,
+.form-inputs select {
+    border-radius: 0.5rem;
+    padding: 1rem 0.75rem;
+    width: 100%;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--clr-alpha);
+    outline: 2px solid var(--bg-dark);
+    color: #eee;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+.form-inputs input::-webkit-inner-spin-button,
+.form-inputs input::-webkit-outer-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-inputs select:focus  {
+  outline: 2px solid var(--clr);
+}
+
+.form-inputs select option {
+  outline: 2px solid var(--clr);
+  color: #707070;
+}
+
+.form-inputs input:focus{
+  outline: 2px solid var(--clr);
+}
+
+.form-inputs label {
+    align-self: flex-start;
+    color: var(--clr);
+    font-weight: 600;
+  }
+
+
+
