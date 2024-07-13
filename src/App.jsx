@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
+import error_img from "./assets/img/404-error.svg";
 
 function App() {
   const [localities, setLocalities] = useState([]);
   const [prediction, setPrediction] = useState();
   const [loader, setLoader] = useState(false);
+  const [errorCard,setErrorCard] = useState(false)
   const [formData, setFormData] = useState({
     bhk: "",
     furnishing: "",
@@ -33,21 +35,41 @@ function App() {
     }));
   };
 
+  const handleErrorCard = () => {
+    setErrorCard(false)
+  }
+
+  const validateForm = () => {
+    if(formData.area==="" || formData.bathroom==="" || formData.bhk==="" || formData.furnishing==="" || formData.locality==="" || formData.psqft==="" || formData.transaction==="" || formData.type===""
+    ){
+      setErrorCard(true);
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoader(true);
-    // console.log("Form Submitted", formData);
 
-    axios
-      .post(`${path}api/predict`, formData)
-      .then((response) => {
-        // console.log(response.data);
-        setLoader(false)
-        setPrediction(response.data["prediction"]);
-      })
-      .catch((error) => {
-        console.error("There was an error!", error);
-      });
+    const res = validateForm();
+    if (res) {
+      setLoader(true);
+      // console.log("Form Submitted", formData);
+
+      axios
+        .post(`${path}api/predict`, formData)
+        .then((response) => {
+          // console.log(response.data);
+          setLoader(false);
+          setPrediction(response.data["prediction"]);
+        })
+        .catch((error) => {
+          console.error("There was an error!", error);
+        });
+    } else {
+    }
   };
 
   useEffect(() => {
@@ -57,12 +79,12 @@ function App() {
 
   return (
     <>
-      <div className="bg-img bg-cover bg-center bg-no-repeat bg-fixed w-screen h-screen">
-        <div className="flex flex-col items-center pt-16">
-          <h1 className="text-6xl font-primary text-white ">
+      <div className="relative bg-img bg-cover bg-center bg-no-repeat bg-fixed w-screen h-screen transition-all duration-300 ease-linear">
+        <div className="flex flex-col items-center justify-center pt-16">
+          <h1 className="text-center text-6xl font-primary text-white ">
             Delhi House Price Predictor
           </h1>
-          <div className="pt-16 flex px-8 flex-col items-center gap-16">
+          <div className="max-w-full pt-16 flex px-8 flex-col items-center gap-16">
             <form
               method="post"
               onSubmit={handleSubmit}
@@ -186,7 +208,7 @@ function App() {
               </button>
             </form>
             <div>
-            {prediction  ? (
+              {prediction ? (
                 <h3 className="text-3xl text-primary font-semibold">
                   &#x20b9; {prediction}
                 </h3>
@@ -201,6 +223,18 @@ function App() {
             </div>
           </div>
         </div>
+        {errorCard ? (
+          <div className="card">
+          <img src={error_img} alt="error image" className="App-logo" />
+          <div className="header">
+            <center>Error : fill all the required fields</center>
+          </div>
+          <button className="App-button" onClick={handleErrorCard}>OK</button>
+        </div>) : ""}
+          {
+            errorCard ? (<div className="backdrop"></div>) : ""
+          }
+        
       </div>
     </>
   );
