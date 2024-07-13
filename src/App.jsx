@@ -52,7 +52,7 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setPrediction("")
     const res = validateForm();
     if (res) {
       setLoader(true);
