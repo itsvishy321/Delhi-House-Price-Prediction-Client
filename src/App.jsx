@@ -133,7 +133,7 @@ function App() {
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="transaction">Transaction</label>
+                  <label htmlFor="transaction">Select Transaction</label>
                   <select
                     name="transaction"
                     id="transaction"
@@ -146,7 +146,7 @@ function App() {
                   </select>
                 </div>
                 <div className="input-field">
-                  <label htmlFor="bath">Bathroom</label>
+                  <label htmlFor="bath">Select number of Bathrooms</label>
                   <select
                     name="bathroom"
                     id="bath"
