@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 import error_img from "./assets/img/404-error.svg";
+import { Footer } from "./Footer";
 
 function App() {
   const [localities, setLocalities] = useState([]);
@@ -81,9 +82,11 @@ function App() {
     <>
       <div className="relative bg-img bg-cover bg-center bg-no-repeat bg-fixed w-screen h-screen transition-all duration-300 ease-linear">
         <div className="flex flex-col items-center justify-center pt-16">
-          <h1 className="text-center text-6xl font-primary text-white ">
-            Delhi House Price Predictor
+          <h1 className="text-center text-6xl font-primary text-white tracking-wider">
+            House Edge
           </h1>
+          <br /> 
+          <p className="text-lg font-secondary text-text uppercase tracking-widest">Delhi House Price Predictor</p>
           <div className="max-w-full pt-16 flex px-8 flex-col items-center gap-16">
             <form
               method="post"
@@ -223,6 +226,7 @@ function App() {
             </div>
           </div>
         </div>
+        <Footer/>
         {errorCard ? (
           <div className="card">
           <img src={error_img} alt="error image" className="App-logo" />
